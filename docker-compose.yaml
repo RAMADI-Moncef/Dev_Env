@@ -3,23 +3,23 @@ version: '3.8'
 services:
   
   postgres:
-    image: postgres:14
+    image: postgres:latest
     container_name: postgres
     environment:
-      POSTGRES_USER: RAMADI
-      POSTGRES_PASSWORD: Sophist
-      POSTGRES_DB: Dev_Env-DB
+      POSTGRES_USER: your_user
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: your_database
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
   pgadmin:
-    image: dpage/pgadmin4:6.21
+    image: dpage/pgadmin4:latest
     container_name: pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: RAMADI@admin.com
-      PGADMIN_DEFAULT_PASSWORD: Sophist
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
     depends_on:
@@ -29,14 +29,14 @@ services:
     image: codercom/code-server:latest
     container_name: vscode
     environment:
-      PASSWORD: Sophist
+      PASSWORD: your_password
     volumes:
       - vscode_data:/home/coder/project
     ports:
       - "8443:8443"
 
   java:
-    image: openjdk:17
+    image: openjdk:latest
     container_name: java
     volumes:
       - java_data:/usr/src/app
@@ -54,7 +54,7 @@ services:
     environment:
       FB_BASEURL: /
       FB_NOAUTH: "false"
-      FB_PASSWORD: Sophist
+      FB_PASSWORD: your_password
 
 volumes:
   postgres_data:
