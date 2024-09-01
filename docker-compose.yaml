@@ -24,6 +24,8 @@ services:
       - "5050:80"
     depends_on:
       - postgres
+    volumes:
+      - pgadmin_db:/var/lib/pgadmin
 
   vscode:
     image: codercom/code-server:latest
@@ -39,7 +41,7 @@ services:
     image: openjdk:latest
     container_name: java
     volumes:
-      - java_data:/usr/src/app
+      - ./JavaApp/:/usr/src/app
     working_dir: /usr/src/app
     command: /bin/bash
     tty: true
@@ -57,8 +59,12 @@ services:
       FB_PASSWORD: Sophist
 
 volumes:
+  pgadmin_db:
+          external: true
   postgres_db:
+          external: true
   vscode_data:
-  java_data:
+          external: true
+  JavaApp:
   filebrowser_data:
 

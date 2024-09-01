@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class EmployeeApp {
+public class TraineeApp {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/Dev_Env-DB";
     private static final String USER = "RAMADI";
