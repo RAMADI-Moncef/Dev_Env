@@ -23,13 +23,13 @@ public class TraineeApp {
             System.out.print("Enter hours worked: ");
             int hoursWorked = scanner.nextInt();
 
-            String sql = "INSERT INTO employees (first_name, last_name, hours_worked) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO trainee (first_name, last_name, hours_worked) VALUES (?, ?, ?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, firstName);
                 pstmt.setString(2, lastName);
                 pstmt.setInt(3, hoursWorked);
                 pstmt.executeUpdate();
-                System.out.println("Employee data saved successfully.");
+                System.out.println("Trainee data saved successfully.");
             }
         } catch (SQLException e) {
             System.err.println("Error connecting to the database: " + e.getMessage());
