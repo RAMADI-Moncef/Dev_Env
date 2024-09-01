@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      POSTGRES_USER: RAMADI
+      POSTGRES_PASSWORD: Sophist
+      POSTGRES_DB: Dev_Env-DB
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4:6.21
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: RAMADI@admin.com
+      PGADMIN_DEFAULT_PASSWORD: Sophist
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+
+  vscode:
+    image: codercom/code-server:latest
+    container_name: vscode
+    environment:
+      PASSWORD: Sophist
+    volumes:
+      - vscode_data:/home/coder/project
+    ports:
+      - "8443:8443"
+
+  java:
+    image: openjdk:17
+    container_name: java
+    volumes:
+      - java_data:/usr/src/app
+    working_dir: /usr/src/app
+    command: /bin/bash
+    tty: true
+
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    volumes:
+      - filebrowser_data:/srv
+    ports:
+      - "8080:80"
+    environment:
+      FB_BASEURL: /
+      FB_NOAUTH: "false"
+      FB_PASSWORD: Sophist
+
+volumes:
+  postgres_data:
+  vscode_data:
+  java_data:
+  filebrowser_data:
+
