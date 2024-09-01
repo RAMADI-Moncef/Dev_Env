@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class TraineeApp {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/Dev_Env-DB";
+    private static final String URL = "jdbc:postgresql://192.168.0.5:5432/Dev_Env-Data";
     private static final String USER = "RAMADI";
     private static final String PASSWORD = "Sophist";
 
