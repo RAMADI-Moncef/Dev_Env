@@ -40,10 +40,15 @@ services:
   java:
     image: openjdk:latest
     container_name: java
+    depends_on:
+      - postgres
     volumes:
       - ./JavaApp/:/usr/src/app
     working_dir: /usr/src/app
-    command: /bin/bash
+    command:     bash -c "
+        javac TraineeApp.java &&
+        java -cp '.:postgresql-42.6.0.jar' TraineeApp
+      "
     tty: true
 
   filebrowser:
