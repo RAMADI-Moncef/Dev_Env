@@ -45,12 +45,16 @@ services:
     volumes:
       - ./JavaApp/:/usr/src/app
     working_dir: /usr/src/app
-    command:     bash -c "
+    command: >
+      bash -c "
         javac TraineeApp.java &&
         java -cp '.:postgresql-42.6.0.jar' TraineeApp
       "
     tty: true
-
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h postgres -p 5432"]
+      interval: 10s
+      retries: 5
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
