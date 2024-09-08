@@ -33,9 +33,9 @@ services:
     environment:
       PASSWORD: Sophist
     volumes:
-      - vscode_data:/home/coder/project
+      - ./JavaApp/:/home/coder/project
     ports:
-      - "8085:8443"
+      - "8085:8080"
 
   java:
     image: openjdk:latest
@@ -67,8 +67,6 @@ volumes:
   pgadmin_db:
           external: true
   postgres_db:
-          external: true
-  vscode_data:
           external: true
   JavaApp:
   filebrowser_data:
